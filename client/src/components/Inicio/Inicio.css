@@ -1,0 +1,40 @@
+.containerinicio{
+    height: 100vh;
+    width: 100%;
+    
+    z-index: 2;
+    background-image: url(../../fondos/world1.png);
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    place-items: center;
+    
+}
+@keyframes cambioDeColor {
+    0% {
+      color: yellow;
+    }
+    33% {
+      color: lightgreen;
+    }
+    66% {
+      color: lightblue;
+    }
+    100% {
+      color: yellow;
+    }
+  }
+  
+  .btninicio {
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+    height: 80%;
+    width: 80%;
+    color: aliceblue;
+    animation: cambioDeColor 2s linear infinite; /* Cambia el tiempo y la duración según lo desees */
+  }
+  
+
+

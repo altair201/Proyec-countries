@@ -1,8 +1,15 @@
 const {Activity} = require('../db')
+const {Country} = require('../db')
 
 const getActivity = async (req, res)=>{
     try {
-        const allActivity = await Activity.findAll();
+        const allActivity = await Activity.findAll({
+           
+            include:{
+                model: Country
+            } 
+
+        });
         if(!allActivity) res.status(404).send('no hay activity');
         res.status(200).json(allActivity);
         

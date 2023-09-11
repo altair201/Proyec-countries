@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Country } = require('../db');
+const { Country,Activity } = require('../db');
 const {getIdPais} = require('../controllers/getIdPais')
 
 const getCountries = async (req, res) => {
@@ -34,7 +34,7 @@ const getCountries = async (req, res) => {
       })
 
     })
-    const allContries= await Country.findAll(); 
+    const allContries= await Country.findAll({include: Activity }); 
     res.status(200).json(allContries)
   } catch (error) {
     res.status(500).send(error.massage)

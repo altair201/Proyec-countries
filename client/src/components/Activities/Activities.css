@@ -1,0 +1,82 @@
+.containerActivities{
+    height: 100vh;
+    width: 100%;
+    background-image: url(../../fondos/montana.jpg);
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    place-items: center;
+    
+}
+.containeractivities{
+    border: solid 1px white;
+    height: 80vh;
+    width: 90%;
+    border-radius: 20px;
+    display: grid;
+    grid-template-areas: "titleActv"
+    "cardsActvidad";
+    grid-template-rows: 0.1fr 1fr;
+    backdrop-filter: blur(5px);
+
+}
+.texth2{
+    grid-area: titleActv;
+    font-family: 'Carter One', cursive;
+    color: hsl(163, 13%, 21%);
+}
+.cardsActvidad{
+    grid-area: cardsActvidad;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: auto;
+    gap: 10px;
+}
+.activitycard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    align-items: self-start;
+    height: 300px;
+    width: 270px;
+    border-radius: 20px;
+    background-color: hsla(163, 13%, 21%, 0.795);
+}
+.cardsActvidad::-webkit-scrollbar {
+    width: 4px;
+}
+
+.cardsActvidad::-webkit-scrollbar-thumb {
+    background-color: #00ffbf;
+    border-radius: 3px;
+    
+}
+.activitycard>h3{
+    font-family: 'Lobster', cursive;
+    font-size: 1.3rem;
+    width: 100%;
+}
+.activitycard>p{
+    font-family:  cursive;
+    width: 100%;
+    text-align: justify;
+    font-size: 1rem;
+}
+.activitycard>div{
+    width: 100%;
+    text-align: justify;
+    height: 200px;
+    font-family: cursive;
+    overflow: auto;
+}
+.activitycard>div::-webkit-scrollbar {
+    width: 4px;
+}
+
+.activitycard>div::-webkit-scrollbar-thumb {
+    background-color: #00ffbf;
+    border-radius: 3px;
+    
+}

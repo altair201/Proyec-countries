@@ -19,11 +19,11 @@ module.exports = (sequelize)=>{
             allowNull: false
         },
         duration:{
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             
         },
         season:{
-            type: DataTypes.STRING,
+            type: DataTypes.ARRAY(DataTypes.STRING),
             
         },
         

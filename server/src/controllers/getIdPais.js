@@ -1,10 +1,13 @@
-const { Country } = require('../db');
+const { Country,Activity } = require('../db');
 
 const getIdPais = async(idPais)=>{
     try {
        
         const conver = idPais.toUpperCase()
-        const paisId = await Country.findOne({ where: { id: conver } });
+        const paisId = await Country.findOne({ 
+            where: { id: conver },
+            include: Activity
+        });
         if(!paisId){
             return { error: "No se encontró el ID" };
         } 

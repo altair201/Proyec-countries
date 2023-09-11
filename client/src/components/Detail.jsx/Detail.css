@@ -1,0 +1,129 @@
+.containerdetail{
+    height: 100vh;
+    width: 100vw;
+    background-image: url(../../fondos/luca-bravo-O453M2Liufs-unsplash.jpg);
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    place-items: center;
+}
+.containerEvery{
+    height: 80%;
+    width: 80%;
+    display: grid;
+    grid-template-areas: "imagen infoactividad"
+    "infodetail infoactividad";
+    place-items: center;
+}
+.btnback{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+.btnback1{
+    width: 60px;
+    height: 40px;
+    background-image: url(../../fondos/flecha-izquierda.png);
+    background-position: center;
+    background-size: cover;
+    background-color: hsla(163, 13%, 21%, 0.795);
+    border: solid 2px rgb(74, 148, 78); 
+    transition: ease 0.5s;
+}
+.btnback1:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+}
+.imgdetail{
+    grid-area: imagen;
+    border: solid rgb(0, 255, 128) 3px;
+    height: 266px;
+    width: 400px;
+    border-radius: 20px;
+    display: grid;
+    place-items: center;
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+.img1detail,
+.img2detail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+.img1detail{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+.img2detail {
+  opacity: 0;
+  width: 190px;
+  top: 50%;
+  left: 50%;
+   transform: translate(-50%, -50%);
+  
+}
+
+.imgdetail:hover .img1detail {
+  opacity: 0;
+}
+
+.imgdetail:hover .img2detail {
+  opacity: 1;
+}
+.infodetail{
+    grid-area: infodetail;
+    border: solid rgb(0, 255, 128) 3px;
+    height: 400px;
+    width: 50%;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: justify;
+    align-items: center;
+    background-color: hsla(163, 13%, 21%, 0.795);
+}
+
+.infodetail>h3{
+    font-family: 'Carter One', cursive;
+    
+}
+.infoactividades{
+    font-family: 'Carter One', cursive;
+    position: relative;
+    grid-area: infoactividad;
+    border: solid rgb(0, 255, 128) 3px;
+    border-radius: 10px;
+    height: 450px;
+    width: 700px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    padding-top: 40px;
+    
+}
+.infoactividades::-webkit-scrollbar {
+    width: 4px;
+    /* Ancho de la barra de desplazamiento */
+}
+
+.infoactividades::-webkit-scrollbar-thumb {
+    background-color: #00ffbf;
+    /* Color de la barra de desplazamiento */
+    border-radius: 3px;
+    /* Bordes redondeados de la barra de desplazamiento */
+}
+.infoactividades>h2{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

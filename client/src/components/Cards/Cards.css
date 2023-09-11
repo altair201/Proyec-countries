@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Kaushan+Script&family=Lobster&display=swap');
+.containerCards {
+    border: solid 1px white;
+    width: 250px;
+    height: 300px;
+    position: relative;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+.link{
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    font-family: 'Lobster', cursive;
+    font-size: 1.2rem;
+    color: aliceblue;
+}
+
+.img1 {
+    height: 160px;
+    width: 250px;
+    position: absolute;
+    top: 29%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    transition: filter 0.5s ease; /* Añade una transición para suavizar el cambio de filtro */
+}
+
+.img2 {
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    top: 29%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0; /* Inicialmente oculta img2 */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Añade transiciones para suavizar los cambios */
+}
+
+.containerCards:hover .img1 {
+    filter: brightness(0.7); /* Cambia el brillo de img1 en hover */
+}
+
+.containerCards:hover .img2 {
+    transform: translate(-50%, -70%); /* Cambia la posición de img2 en hover */
+    opacity: 1; /* Muestra img2 en hover */
+}
+.h3{
+    margin-top: 180px;
+}

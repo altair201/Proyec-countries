@@ -1,0 +1,134 @@
+.containerForm{
+    height: 100vh;
+    width: 100vw;
+    background-image: url(../../fondos/CREARACT.jpg);
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    place-items: center;
+}
+.create-form{
+    border: solid 1px red;
+    height: 550px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:first baseline;
+    padding-left: 50px;
+    gap: 25px;
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding-top: 30px;
+}
+.dificultStar{
+    display: flex;
+    gap: 20px;
+    font-family: 'Lobster', cursive;
+   font-size: 1.3rem;
+   position: relative;
+}
+.star.selected {
+    fill: yellow;
+    cursor: pointer;
+}
+.star{
+    fill:#97ffdc;
+    cursor: pointer;
+}
+.edit-form1{
+    display: flex;
+    gap: 30px;
+   font-family: 'Lobster', cursive;
+   font-size: 1.3rem;
+  
+    display: inline;
+    width: 100%;
+    text-align: justify;
+    position: relative;
+}
+.editinput{
+    border-radius: 10px;
+    border: none;
+    padding-left: 10px;
+    font-size: 1rem;
+    background-color: hsla(166, 11%, 23%, 0.795);
+    
+}
+.edit-input1{
+    width: 200px;  
+    
+}
+.edit-input2{
+    width: 100px;  
+}
+.editSeason{
+    font-family: 'Lobster', cursive;
+    font-size: 1.3rem;
+    
+    gap: 5px;
+    align-items: center;
+    
+    position: relative;
+}
+.editcheckbox{
+    border: 'none';
+    background-Color: hsla(166, 11%, 23%, 0.795);
+
+}
+.edit-form{ 
+    height: 10px;
+    width: 400px;
+    font-family: 'Lobster', cursive;
+    font-size: 1.3rem;
+    
+}
+.edit-paises{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    height: 60px;
+    overflow: auto;
+    flex-wrap: wrap;
+   
+    z-index: 2;
+}
+.edit-paises::-webkit-scrollbar {
+    width: 4px;
+}
+
+.edit-paises::-webkit-scrollbar-thumb {
+    background-color: #00ffbf;
+    border-radius: 3px;
+    
+}
+
+
+.editEnviar{
+    margin-top: 120px;
+    padding-top: 20px;
+    height: 60px;
+    width: 450px;
+    
+}
+.edit-paises>button{
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Kaushan Script', cursive;
+    font-weight: 800;
+    font-size: 0.8.5rem;
+    background-color: #ffffffb6;
+    color: black;
+    transition: 0.5s;
+}
+.mensajeError{
+    color: red;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1rem;
+    text-align: center;
+    position: absolute;
+    top: 15px;
+}
