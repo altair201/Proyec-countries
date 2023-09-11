@@ -30,7 +30,7 @@ const reducer = (state = initialState, action) => {
             const allCountriesCopy = [...state.countries]
             return {
                 ...state,
-                countries: action.payload === "A" ? allCountriesCopy.sort((a, b) => a.name.localeCompare(b.name)) : action.payload === "D"? allCountriesCopy.sort((a, b) => b.name.localeCompare(a.name)) : action.payload === "P"? allCountriesCopy.sort((a, b) => a.population - b.population) : state.temp.length>0 ? state.temp : state.allCountries
+                countries: action.payload === "OR" ? allCountriesCopy.sort((a, b) => a.name.localeCompare(b.name)) : action.payload === "A" ? allCountriesCopy.sort((a, b) => a.id.localeCompare(b.id)) : action.payload === "D"? allCountriesCopy.sort((a, b) => b.id.localeCompare(a.id)) : action.payload === "P"? allCountriesCopy.sort((a, b) => a.population - b.population) : state.temp.length>0 ? state.temp : state.allCountries
 
             }
         case "CONTINENT":

@@ -64,6 +64,7 @@ const AllCards = ({ countries, actividades }) => {
                     </select>
                     <select id="orderSelect" onChange={handleOrder}>
                         <option value="PR">Predeterminado</option>
+                        <option value="OR">Orden Alfabetico</option>
                         <option value="A">Ascendente</option>
                         <option value="D">Decendente</option>
                         <option value="P">Población</option>

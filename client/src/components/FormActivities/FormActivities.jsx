@@ -116,8 +116,7 @@ const FormActivities = () => {
         });
          
         validateForm({
-            ...formData,
-            [name]: name 
+            [name]: value
         });
 
     };
