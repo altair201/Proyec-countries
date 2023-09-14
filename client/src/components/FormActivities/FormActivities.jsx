@@ -46,7 +46,6 @@ const FormActivities = () => {
         countries: [],
     });
 
-
     const [mensajeError, setMensajeError] = useState({
         name: "",
         dificult: "",
@@ -175,12 +174,12 @@ const FormActivities = () => {
 
     const handleSubmit = () => {
 
+        if (errorForm === "" && formData.name !=="" &&
+        formData.dificult >= 1 && formData.dificult <= 5 &&
+        formData.duration >= 1 && formData.duration <= 8 &&
+        formData.season.length > 0 &&
+        formData.countries.length > 0) openModal('successModalIsOpen');
         dispatch(potsActivities(formData));
-        if (errorForm === "" && formData.name &&
-            formData.dificult >= 1 && formData.dificult <= 5 &&
-            formData.duration >= 1 && formData.duration <= 8 &&
-            formData.season.length > 0 &&
-            formData.countries.length > 0) openModal('successModalIsOpen');
         setFormData({
             name: "",
             dificult: 0,

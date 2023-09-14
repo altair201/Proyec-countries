@@ -2,7 +2,7 @@ import React from "react";
 import Cards from "../cards/cards";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { orderCards, continentCard, getCountryActivities, restartError } from "../../redux/actions";
+import { orderCards, continentCard, getCountryActivities, restartError, countriesAll } from "../../redux/actions";
 import "./AllCards.css";
 
 

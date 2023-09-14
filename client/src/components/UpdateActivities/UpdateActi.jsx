@@ -175,13 +175,17 @@ const UpdatedActi = () => {
 
 
     const handleSubmit = () => {
-
         dispatch(UpdatedActivities(id, formData));
-        if (errorForm === "" && formData.name &&
+
+        if (errorForm === "" && formData.name !== "" &&
             formData.dificult >= 1 && formData.dificult <= 5 &&
             formData.duration >= 1 && formData.duration <= 8 &&
             formData.season.length > 0 &&
-            formData.countries.length > 0) openModal('successModalIsOpen');
+            formData.countries.length > 0){
+                openModal('successModalIsOpen');
+            }{
+                setsaveError("Faltan datos")
+            }
         setFormData({
             name: "",
             dificult: 0,
