@@ -14,7 +14,7 @@ const getName = async (req, res) => {
             include: Activity
 
         });
-        if (!allCons || allCons.length === 0) return res.status(404).send("error al encontrar");
+        if (!allCons || allCons.length === 0) return res.status(404).send("No se encontraron coincidencias");
         res.status(200).json(allCons);
 
     } catch (error) {

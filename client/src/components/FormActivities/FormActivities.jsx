@@ -8,14 +8,35 @@ const FormActivities = () => {
     const dispatch = useDispatch();
     const allCountries = useSelector((state) => state.allCountries);
     const errorForm = useSelector((state) => state.errorForm);
+    const [saveError, setsaveError] = useState("")
+    const [modals, setModals] = useState({
+        errorModalIsOpen: false,
+        successModalIsOpen: false,
+                                        
+    });
     useEffect(() => {
-        if(errorForm !== ''){
-            alert(errorForm);
+        if (errorForm !== '') {
+            openModal('errorModalIsOpen');
+            setsaveError(errorForm)
             dispatch(restartError());
         }
     }, [errorForm]);
 
-   
+    const openModal = (modalName) => {
+        setModals({
+            ...modals,
+            [modalName]: true,
+        });
+    };
+
+    const closeModal = (modalName) => {
+        setModals({
+            ...modals,
+            [modalName]: false,
+        });
+    };
+
+
     const [bandera, setBandera] = useState(true);
     const [formData, setFormData] = useState({
         name: "",
@@ -24,8 +45,8 @@ const FormActivities = () => {
         season: [],
         countries: [],
     });
-    
-    
+
+
     const [mensajeError, setMensajeError] = useState({
         name: "",
         dificult: "",
@@ -59,15 +80,15 @@ const FormActivities = () => {
             duration: newErrors.duration
         });
 
-        
+
     };
-    
+
 
 
 
     const handleSeasonChange = (event) => {
         const selectedSeason = event.target.value;
-        console.log(selectedSeason);
+        
         if (formData.season.includes(selectedSeason)) {
             const seasonFiltered = formData.season.filter((season) => season !== selectedSeason)
             setFormData({ ...formData, season: seasonFiltered });
@@ -93,13 +114,13 @@ const FormActivities = () => {
         </label>
     ));
     useEffect(() => {
-        
-        if(formData.season.length === 0){
+
+        if (formData.season.length === 0) {
             setMensajeError({
                 ...mensajeError,
                 season: "Debe seleccionar una temporada."
             })
-        }else{
+        } else {
             setMensajeError({
                 ...mensajeError,
                 season: ""
@@ -114,7 +135,7 @@ const FormActivities = () => {
             ...formData,
             [name]: name === "duracion" ? parseInt(value) : value,
         });
-         
+
         validateForm({
             [name]: value
         });
@@ -128,22 +149,22 @@ const FormActivities = () => {
         })
     }
     const handlePushCountries = (event) => {
-        
+
         setFormData({
             ...formData,
             countries: [...formData.countries, event.target.value,],
         })
         setBandera(true);
-        
+
     }
     useEffect(() => {
-        
-        if(formData.countries.length === 0 && bandera===false){
+
+        if (formData.countries.length === 0 && bandera === false) {
             setMensajeError({
                 ...mensajeError,
                 countries: "Debe seleccionar al menos un país."
             })
-        }else{
+        } else {
             setMensajeError({
                 ...mensajeError,
                 countries: ""
@@ -153,13 +174,13 @@ const FormActivities = () => {
 
 
     const handleSubmit = () => {
-        
+
         dispatch(potsActivities(formData));
         if (errorForm === "" && formData.name &&
-        formData.dificult >= 1 && formData.dificult <= 5 &&
-        formData.duration >= 1 && formData.duration <= 8 &&
-        formData.season.length > 0 &&
-        formData.countries.length > 0) alert("Actividad creada");
+            formData.dificult >= 1 && formData.dificult <= 5 &&
+            formData.duration >= 1 && formData.duration <= 8 &&
+            formData.season.length > 0 &&
+            formData.countries.length > 0) openModal('successModalIsOpen');
         setFormData({
             name: "",
             dificult: 0,
@@ -167,7 +188,7 @@ const FormActivities = () => {
             season: [],
             countries: [],
         })
-        
+
     };
     const renderStars = () => {
         const stars = [];
@@ -194,20 +215,44 @@ const FormActivities = () => {
         return stars;
     };
     const handleDelete = (selectedCountry) => {
-       
+
         const updatedCountries = formData.countries.filter(country => country !== selectedCountry);
         setFormData({
             ...formData,
             countries: updatedCountries,
         });
-        
-        setBandera(false);
-        
-        
-    }
 
+        setBandera(false);
+
+
+    }
     return (
         <div className="containerForm">
+            
+            
+            {modals.errorModalIsOpen && (
+                <div className="containermodal">
+                <div className="modal">
+                    <div className="errornofound"></div>
+                    <div className="modal-content">
+                        <h3>ERROR {saveError}</h3>
+                        <button className="btn" onClick={() => closeModal('errorModalIsOpen')}>Cerrar</button>
+                    </div>
+                </div>
+                </div>
+            )}
+                {modals.successModalIsOpen && (
+                    <div className="containermodal">
+                <div className="modalsuces">
+                    <div className="succesfull"></div>
+                    <div className="modal-content">
+                        <h2>Actividad creada</h2>
+                        <button className="btn" onClick={() => closeModal('successModalIsOpen')}>Cerrar</button>
+                    </div>
+                </div>
+                </div>
+            )}
+            
             <div className="create-form" >
                 <div className="edit-form1">
                     <label>Nombre: </label>
@@ -256,7 +301,7 @@ const FormActivities = () => {
                 <div className="edit-form"><h3>Paises seleccionados</h3><div className="edit-paises">{formData.countries.map((country, index) => <button className="editbtn" key={index} onClick={() => handleDelete(country)}>{country}    ❌</button >)}</div></div>
                 <div className="editEnviar">
                     <button className="btn" type="submit" onClick={handleSubmit}>Enviar</button>
-                    
+
                 </div>
             </div>
 

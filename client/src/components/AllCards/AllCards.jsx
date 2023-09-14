@@ -1,58 +1,103 @@
 import React from "react";
 import Cards from "../cards/cards";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { orderCards, continentCard, getCountryActivities } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { orderCards, continentCard, getCountryActivities, restartError, countriesAll } from "../../redux/actions";
 import "./AllCards.css";
 
 
 const AllCards = ({ countries, actividades }) => {
-    console.log(countries)
     const dispatch = useDispatch();
-    const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
-    const [pageCount, setPageCount] = useState(1);
+    const [pageCount, setPageCount] = useState(0);
+    const errorForm = useSelector((state) => state.errorForm);
+    const [saveError, setsaveError] = useState("")
+    const [reset, setReset] = useState({
+        continentSelect: "",
+        orderSelect: "",
+        actividad: ""
+    })
+    const newPageCount = Math.ceil(countries.length / itemsPerPage);
+
+    
     useEffect(() => {
-        const newPageCount = Math.ceil(countries.length / itemsPerPage);
+        if (reset.continentSelect !== "") {
+            dispatch(continentCard(reset.continentSelect));
+        }
+        if (reset.orderSelect !== "") {
+            dispatch(orderCards(reset.orderSelect));
+        }
+        if (reset.actividad !== "") {
+            dispatch(getCountryActivities(reset.actividad));
+        }
+    }, [reset.continentSelect, reset.actividad, reset.orderSelect])
+
+
+    useEffect(() => {
         setPageCount(newPageCount);
-        setCurrentPage(0)
-    }, [countries]);
+        if (errorForm !== '') {
+
+            setsaveError(errorForm)
+            dispatch(restartError());
+        }
+    }, [errorForm, countries]);
+
 
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
     };
     const resetSelects = () => {
-
-        document.getElementById("continentSelect").value = "T";
-        document.getElementById("orderSelect").value = "PR";
-        document.getElementById("actividad").value = "";
+        dispatch(countriesAll());
+        setReset({
+            continentSelect: "T",
+            orderSelect: "PR",
+            actividad: ""
+        })
     };
 
     const startIndex = currentPage * itemsPerPage;
     const endIndex = Math.min(startIndex + itemsPerPage, countries.length);
     const countriesToDisplay = countries.slice(startIndex, endIndex);
 
+    const tempOrder = countriesToDisplay.length !== countries.length
+    useEffect(() => {
+        if (tempOrder) {
+            setCurrentPage(0)
+        }
+    }, [countries.length]);
     const handleOrder = (event) => {
-        dispatch(orderCards(event.target.value))
+        setReset({
+            ...reset,
+            orderSelect: event.target.value
+        })
     }
     const handleContinent = (event) => {
-        dispatch(continentCard(event.target.value))
+        setReset({
+            ...reset,
+            continentSelect: event.target.value
+        })
+        if (event.target.value === "T") {
+            dispatch(countriesAll());
+        }
     }
     const handleAllCountries = () => {
-        handleContinent({ target: { value: "T" } });
         resetSelects();
+
     };
     const handleActivities = (event) => {
-        dispatch(getCountryActivities(event.target.value))
-
+        setReset({
+            ...reset,
+            actividad: event.target.value
+        });
     }
-    console.log(currentPage)
+
     return (
         <div className="containerprincipal">
             <div className="containerFilter">
                 <div className="containerModFil">
                     <button onClick={handleAllCountries} >ALL Countries</button>
-                    <select id="continentSelect" onChange={handleContinent}>
+                    <select value={reset.continentSelect} onChange={handleContinent}>
                         <option value="T">Seleccione</option>
                         <option value="North America">Norte America</option>
                         <option value="South America">Sur America</option>
@@ -62,14 +107,14 @@ const AllCards = ({ countries, actividades }) => {
                         <option value="Oceania">Oceania</option>
                         <option value="Antarctica">Antarctica</option>
                     </select>
-                    <select id="orderSelect" onChange={handleOrder}>
+                    <select value={reset.orderSelect} onChange={handleOrder}>
                         <option value="PR">Predeterminado</option>
                         <option value="OR">Orden Alfabetico</option>
                         <option value="A">Ascendente</option>
                         <option value="D">Decendente</option>
                         <option value="P">Población</option>
                     </select>
-                    <select id="actividad" name="actividad" onChange={handleActivities}>
+                    <select value={reset.actividad} onChange={handleActivities}>
                         <option value="">Seleccione</option>
                         {actividades.slice().sort((a, b) => a.name.localeCompare(b.name)).map((actividad) => (
                             <option key={actividad.id} value={actividad.id}>{actividad.name}</option>
@@ -78,8 +123,9 @@ const AllCards = ({ countries, actividades }) => {
                 </div>
             </div>
             <div className="containerAllCards">
+
                 {
-                    countriesToDisplay.map(({ id, name, image, continent, capital, subregion, area, population, coatOfArms, Activities }) => (
+                    saveError !== "" && countries.length === 0 ? <div>{saveError}</div> : countriesToDisplay.map(({ id, name, image, continent, capital, subregion, area, population, coatOfArms, Activities }) => (
                         <Cards
                             key={id}
                             id={id}
@@ -98,7 +144,7 @@ const AllCards = ({ countries, actividades }) => {
             </div>
             <div className="containerPag">
                 {
-                  currentPage ===0?   <button className="desabilitar" onClick={() => handlePageChange(currentPage - 1)}disabled={currentPage === 0}> </button >: <button className="flecha2" onClick={() => handlePageChange(currentPage - 1)}disabled={currentPage === 0}> </button >
+                    currentPage === 0 ? <button className="desabilitar" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 0}> </button > : <button className="flecha2" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 0}> </button >
 
                 }
                 <div>

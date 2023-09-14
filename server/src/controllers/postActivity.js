@@ -4,7 +4,7 @@ const postActivity = async(req, res) =>{
     try {
         const {name, dificult, duration, season, countries} = req.body;
         console.log(name, dificult, duration, season)
-        if(!name || !dificult || !duration || !season || !countries) return res.status(401).send("faltan datos mi rey");
+        if(!name || !dificult || !duration || !season || !countries) return res.status(401).send("faltan datos ");
         const activitycon = await Activity.create({name, dificult, duration, season});
         await activitycon.addCountry(countries)
         res.status(200).json(activitycon);

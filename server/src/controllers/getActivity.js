@@ -10,7 +10,7 @@ const getActivity = async (req, res)=>{
             } 
 
         });
-        if(!allActivity) res.status(404).send('no hay activity');
+        if(!allActivity) res.status(404).send('No hay actividades');
         res.status(200).json(allActivity);
         
     } catch (error) {

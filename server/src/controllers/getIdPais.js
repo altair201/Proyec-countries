@@ -9,7 +9,7 @@ const getIdPais = async(idPais)=>{
             include: Activity
         });
         if(!paisId){
-            return { error: "No se encontró el ID" };
+            return { error: "No se encontró el pais por ID" };
         } 
         return paisId;
     } catch (error) {

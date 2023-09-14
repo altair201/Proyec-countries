@@ -33,7 +33,7 @@
     
 }
 .btn:hover{
-    background-color: greenyellow;
+    background-color: rgb(138, 191, 252);
     color: black;
     transform: scale(1.2);
 }
@@ -45,7 +45,7 @@
     cursor: pointer;
     font-family: 'Kaushan Script', cursive;
     font-size: 0.8.5rem;
-    background-color: greenyellow;
+    background-color: rgba(176, 176, 177, 0.692);
     transition: 0.5s;
     color: black;
 }

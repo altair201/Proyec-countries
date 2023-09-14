@@ -5,7 +5,8 @@ const initialState = {
     countryId:[],
     activities: [],
     allActivities: [],
-    errorForm:""
+    errorForm:"",
+    filtertemp:[]
 }
 
 const reducer = (state = initialState, action) => {
@@ -27,18 +28,22 @@ const reducer = (state = initialState, action) => {
                 countries: [action.payload]
             }
         case "ORDER":
-            const allCountriesCopy = [...state.countries]
+            
             return {
                 ...state,
-                countries: action.payload === "OR" ? allCountriesCopy.sort((a, b) => a.name.localeCompare(b.name)) : action.payload === "A" ? allCountriesCopy.sort((a, b) => a.id.localeCompare(b.id)) : action.payload === "D"? allCountriesCopy.sort((a, b) => b.id.localeCompare(a.id)) : action.payload === "P"? allCountriesCopy.sort((a, b) => a.population - b.population) : state.temp.length>0 ? state.temp : state.allCountries
+                countries: action.payload === "OR" ? state.countries.sort((a, b) => a.name.localeCompare(b.name)) : action.payload === "A" ? state.countries.sort((a, b) => a.id.localeCompare(b.id)) : action.payload === "D"? state.countries.sort((a, b) => b.id.localeCompare(a.id)) : action.payload === "P"? state.countries.sort((a, b) => a.population - b.population) : state.temp.length>0 ? state.temp : state.countries
 
             }
         case "CONTINENT":
             const tempCopy=[...state.allCountries]
+        
             return{
                 ...state,
-                countries: action.payload === "T" ? state.allCountries : tempCopy.filter((conti)=>conti.continent === action.payload), 
-                temp: tempCopy.filter((conti)=>conti.continent === action.payload)
+                countries: action.payload === "T" ? tempCopy : state.filtertemp.length>0 ? state.filtertemp.filter((conti)=>conti.continent === action.payload): state.allCountries.filter((conti)=>conti.continent === action.payload), 
+
+                temp: tempCopy.filter((conti)=>conti.continent === action.payload),
+                
+                filtertemp: action.payload === "T" ? [] : state.filtertemp
             }
         case "COUNTRI_ID":
             return{
@@ -53,12 +58,12 @@ const reducer = (state = initialState, action) => {
                 errorForm:""
             }
         case "GET_ACCOUNTRIES":
-            const filterCountries = state.allCountries.filter(country=>{
+            const varfilter= action.payload === "" ? state.temp : state.temp.length>0 ? state.temp  : state.allCountries
+            const filterCountries = varfilter.filter(country=>{
                 if(action.payload === ""){
                     return true
                 }
                 for ( const activity of country.Activities){
-                    console.log(activity)
                     if(activity.id === +action.payload ){
                         return true
                     }
@@ -68,13 +73,15 @@ const reducer = (state = initialState, action) => {
             )
             return{
                 ...state,
-                countries: filterCountries
+                countries: filterCountries,
+                filtertemp: filterCountries
             }
         case "ERROR_ACTIVITIES":
             
             return{
                 ...state,
-                errorForm: action.payload
+                errorForm: action.payload,
+                countries: []
             }
             
         default:

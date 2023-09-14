@@ -23,7 +23,7 @@
 .texth2{
     grid-area: titleActv;
     font-family: 'Carter One', cursive;
-    color: hsl(163, 13%, 21%);
+    color: hsl(161, 56%, 14%);
 }
 .cardsActvidad{
     grid-area: cardsActvidad;
@@ -43,6 +43,7 @@
     width: 270px;
     border-radius: 20px;
     background-color: hsla(163, 13%, 21%, 0.795);
+    position: relative;
 }
 .cardsActvidad::-webkit-scrollbar {
     width: 4px;
@@ -79,4 +80,35 @@
     background-color: #00ffbf;
     border-radius: 3px;
     
+}
+.editBtnsx{
+    display: flex;
+    position: absolute;
+   
+    height: 0;
+    width: 0;
+    left: 0;
+    top: 10px;
+    justify-content: space-around;
+    gap: 150px;
+}
+.deleteAct{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: hsla(166, 11%, 23%, 0.795);
+    color: red;
+    font-weight: 800;
+    transition: ease 0.5s;
+}
+.deleteAct:hover{
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+.btneditx{
+    height: 40px;
+    width: 40px;
+    background-image: url(../../fondos/edit.png);
+    background-size: cover;
 }

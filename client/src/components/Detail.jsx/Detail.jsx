@@ -16,7 +16,6 @@ const Detail = () => {
         
     },[dispatch, id])
     const countryId = useSelector((state) => state.countryId);
-    console.log(countryId);
     
     
     
