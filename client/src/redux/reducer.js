@@ -6,8 +6,10 @@ const initialState = {
     activities: [],
     allActivities: [],
     errorForm:"",
-    filtertemp:[]
+    filtertemp:[],
+    
 }
+
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -31,7 +33,9 @@ const reducer = (state = initialState, action) => {
             
             return {
                 ...state,
-                countries: action.payload === "OR" ? state.countries.sort((a, b) => a.name.localeCompare(b.name)) : action.payload === "A" ? state.countries.sort((a, b) => a.id.localeCompare(b.id)) : action.payload === "D"? state.countries.sort((a, b) => b.id.localeCompare(a.id)) : action.payload === "P"? state.countries.sort((a, b) => a.population - b.population) : state.temp.length>0 ? state.temp : state.countries
+                countries: action.payload === "OR" ? state.countries.sort((a, b) => a.name.localeCompare(b.name)) : action.payload === "A" ? state.countries.sort((a, b) => a.id.localeCompare(b.id)) : action.payload === "D"? state.countries.sort((a, b) => b.id.localeCompare(a.id)) : action.payload === "P"? state.countries.sort((a, b) => a.population - b.population) : state.temp.length>0 ? state.temp : state.countries,
+
+                
 
             }
         case "CONTINENT":

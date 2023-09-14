@@ -46,7 +46,10 @@ export const getString = (string) => {
             }
 
         } else {
-            console.log('es un numero');
+            return {
+                type: 'ERROR_ACTIVITIES',
+                payload: "No se permite valores numericos"
+            }
         }
     } catch (error) {
         console.log(error);

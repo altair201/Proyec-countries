@@ -2,7 +2,7 @@ import React from "react";
 import Cards from "../cards/cards";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { orderCards, continentCard, getCountryActivities, restartError, countriesAll } from "../../redux/actions";
+import { orderCards, continentCard, getCountryActivities, restartError } from "../../redux/actions";
 import "./AllCards.css";
 
 
@@ -18,18 +18,35 @@ const AllCards = ({ countries, actividades }) => {
         orderSelect: "",
         actividad: ""
     })
+    const [saveValue, setsaveValue] = useState({
+        continentSelect: "",
+        orderSelect: "",
+        actividad: ""
+    })
     const newPageCount = Math.ceil(countries.length / itemsPerPage);
 
     
     useEffect(() => {
         if (reset.continentSelect !== "") {
             dispatch(continentCard(reset.continentSelect));
+            setReset({
+                ...reset,
+                continentSelect: ""
+            })
         }
         if (reset.orderSelect !== "") {
             dispatch(orderCards(reset.orderSelect));
+            setReset({
+                ...reset,
+                orderSelect: ""
+            })
         }
         if (reset.actividad !== "") {
             dispatch(getCountryActivities(reset.actividad));
+            setReset({
+                ...reset,
+                orderSelect: ""
+            })
         }
     }, [reset.continentSelect, reset.actividad, reset.orderSelect])
 
@@ -48,8 +65,12 @@ const AllCards = ({ countries, actividades }) => {
         setCurrentPage(newPage);
     };
     const resetSelects = () => {
-        dispatch(countriesAll());
         setReset({
+            continentSelect: "T",
+            orderSelect: "PR",
+            actividad: ""
+        })
+        setsaveValue({
             continentSelect: "T",
             orderSelect: "PR",
             actividad: ""
@@ -71,15 +92,21 @@ const AllCards = ({ countries, actividades }) => {
             ...reset,
             orderSelect: event.target.value
         })
+        setsaveValue({
+            ...saveValue,
+            orderSelect: event.target.value
+        })
     }
     const handleContinent = (event) => {
         setReset({
             ...reset,
             continentSelect: event.target.value
         })
-        if (event.target.value === "T") {
-            dispatch(countriesAll());
-        }
+        setsaveValue({
+            ...saveValue,
+            continentSelect: event.target.value
+        })
+        
     }
     const handleAllCountries = () => {
         resetSelects();
@@ -90,6 +117,11 @@ const AllCards = ({ countries, actividades }) => {
             ...reset,
             actividad: event.target.value
         });
+        setsaveValue({
+            ...saveValue,
+            actividad: event.target.value
+        })
+        
     }
 
     return (
@@ -97,7 +129,7 @@ const AllCards = ({ countries, actividades }) => {
             <div className="containerFilter">
                 <div className="containerModFil">
                     <button onClick={handleAllCountries} >ALL Countries</button>
-                    <select value={reset.continentSelect} onChange={handleContinent}>
+                    <select value={saveValue.continentSelect} onChange={handleContinent}>
                         <option value="T">Seleccione</option>
                         <option value="North America">Norte America</option>
                         <option value="South America">Sur America</option>
@@ -107,14 +139,14 @@ const AllCards = ({ countries, actividades }) => {
                         <option value="Oceania">Oceania</option>
                         <option value="Antarctica">Antarctica</option>
                     </select>
-                    <select value={reset.orderSelect} onChange={handleOrder}>
+                    <select value={saveValue.orderSelect} onChange={handleOrder}>
                         <option value="PR">Predeterminado</option>
                         <option value="OR">Orden Alfabetico</option>
                         <option value="A">Ascendente</option>
                         <option value="D">Decendente</option>
                         <option value="P">Población</option>
                     </select>
-                    <select value={reset.actividad} onChange={handleActivities}>
+                    <select value={saveValue.actividad} onChange={handleActivities}>
                         <option value="">Seleccione</option>
                         {actividades.slice().sort((a, b) => a.name.localeCompare(b.name)).map((actividad) => (
                             <option key={actividad.id} value={actividad.id}>{actividad.name}</option>

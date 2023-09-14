@@ -94,14 +94,11 @@
 
 .containerAllCards::-webkit-scrollbar {
     width: 4px;
-    /* Ancho de la barra de desplazamiento */
 }
 
 .containerAllCards::-webkit-scrollbar-thumb {
     background-color: #00ffbf;
-    /* Color de la barra de desplazamiento */
     border-radius: 3px;
-    /* Bordes redondeados de la barra de desplazamiento */
 }
 
 .containerPag {
