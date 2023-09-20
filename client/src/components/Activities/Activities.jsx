@@ -15,7 +15,7 @@ const Activities = ({ actividades }) => {
                 <h1 className="texth2">Actividades</h1>
                 <div className="cardsActvidad">
                 {
-                    actividades.map(({ id, name, dificult, duration, season, Countries }) => (
+                    actividades.map(({ id, name, dificult, duration, season, Countries, autor }) => (
                         
                         <CardActivities
                             key={id}
@@ -25,6 +25,7 @@ const Activities = ({ actividades }) => {
                             duration={duration}
                             season={season}
                             Countries={Countries}
+                            autor={autor}
                              />
                     ))
                 }

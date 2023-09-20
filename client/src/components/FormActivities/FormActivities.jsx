@@ -39,6 +39,7 @@ const FormActivities = () => {
 
     const [bandera, setBandera] = useState(true);
     const [formData, setFormData] = useState({
+
         name: "",
         dificult: 0,
         duration: 0,
@@ -225,6 +226,7 @@ const FormActivities = () => {
 
 
     }
+    
     return (
         <div className="containerForm">
             

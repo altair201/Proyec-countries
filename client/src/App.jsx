@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import './App.css'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import AllCards from './components/AllCards/AllCards'
@@ -16,15 +16,17 @@ function App( ) {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries);
   const actividades = useSelector((state) => state.activities);
-  useEffect(() => {
-    dispatch(countriesAll());
-    dispatch(potsActivities());
-  }, [dispatch]);
   const {pathname}=useLocation()
-  const isDetailPage = pathname.startsWith('/detail');
+  useEffect(() => {
+    if (pathname === '/home') {
+      dispatch(countriesAll());
+    }
+    dispatch(potsActivities());
+  }, [dispatch, pathname]);
+
   return (
     <div>
-      {pathname !== '/' && !isDetailPage && <Nav />}
+      {pathname !== '/' && !pathname.startsWith('/detail') && <Nav />}
       
       <Routes>
         <Route path="/home" element={<AllCards countries={countries} actividades={actividades}/>} />

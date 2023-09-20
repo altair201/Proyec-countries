@@ -1,7 +1,7 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 import "./Cards.css";
-const Cards = ({ id, name, image, continent, capital, subregion, area, population, coatOfArms }) => {
+const Cards = ({ id, name, image, continent, coatOfArms }) => {
 
     return (
         <div className="containerCards">

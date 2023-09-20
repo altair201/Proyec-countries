@@ -25,7 +25,7 @@ module.exports = (sequelize)=>{
         season:{
             type: DataTypes.ARRAY(DataTypes.STRING),
             
-        },
+        }
         
     },
     { timestamps: false });
