@@ -27,11 +27,11 @@ const AllCards = ({ countries, actividades }) => {
         if (reset.continentSelect !== "") {
           dispatch(continentCard(reset.continentSelect));
         }
+        if (reset.actividad !== "") {
+            dispatch(getCountryActivities(reset.actividad));
+        }
         if (reset.orderSelect !== "") {
           dispatch(orderCards(reset.orderSelect));
-        }
-        if (reset.actividad !== "") {
-          dispatch(getCountryActivities(reset.actividad));
         }
     }, [reset.continentSelect, reset.orderSelect, reset.actividad]);
 
