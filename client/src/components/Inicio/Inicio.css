@@ -3,38 +3,41 @@
     width: 100%;
     
     z-index: 2;
-    background-image: url(../../fondos/world1.png);
+    background-image: url(../../fondos/globo.jpg);
     background-size: cover;
     background-position: center;
     display: grid;
     place-items: center;
     
 }
-@keyframes cambioDeColor {
-    0% {
-      color: yellow;
-    }
-    33% {
-      color: lightgreen;
-    }
-    66% {
-      color: lightblue;
-    }
-    100% {
-      color: yellow;
-    }
-  }
+.incioingre{
+  border: solid 2px rgb(74, 148, 78);
+  height: 30%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  font-size: 1.2rem;
+}
+
   
-  .btninicio {
+.btninicio {
+    background-color: rgb(144, 249, 249);
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
     display: grid;
     place-items: center;
     font-size: 1.5rem;
     text-decoration: none;
     height: 80%;
     width: 80%;
-    color: aliceblue;
-    animation: cambioDeColor 2s linear infinite; /* Cambia el tiempo y la duración según lo desees */
-  }
+    color: rgb(0, 0, 0);
+   
+}
   
 
 

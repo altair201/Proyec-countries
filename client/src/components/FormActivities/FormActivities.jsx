@@ -305,7 +305,7 @@ const FormActivities = () => {
 
                 </div>
             </div>
-
+            <div className="referenciPhoto">Foto de <a href="https://unsplash.com/es/@joelvodell?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joel Vodell</a> en <a href="https://unsplash.com/es/fotos/TApAkERW5pQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></div>
         </div>
     );
 };

@@ -31,7 +31,7 @@ const Activities = ({ actividades }) => {
                 }
                 </div>
             </div>
-            
+            <div className="referenciPhoto">Foto de <a href="https://unsplash.com/es/@kalenemsley?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kalen Emsley</a> en <a href="https://unsplash.com/es/fotos/mgJSkgIo_JI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></div>
         </div>
 
     );

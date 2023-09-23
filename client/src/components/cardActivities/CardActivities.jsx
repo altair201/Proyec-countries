@@ -3,7 +3,7 @@ import "../Activities/Activities.css";
 import { deleteActivities } from "../../redux/actions";
 import { Link } from "react-router-dom";
 
-const CardActivities = ({id, dificult, duration, name, season, Countries, autor}) => {
+const CardActivities = ({id, dificult, duration, name, season, Countries}) => {
     
     const dispatch = useDispatch()
     const onClose =(id)=>{
