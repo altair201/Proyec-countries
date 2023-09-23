@@ -10,6 +10,8 @@ const Inicio = () => {
         <button className="btninicio" > Ingresar </button>
       </Link>
       </div>
+      <div className="referenciPhoto">Foto de <a href="https://unsplash.com/es/@farshadrezvanian?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Farshad Rezvanian</a> en <a href="https://unsplash.com/es/fotos/Eelegt4hFNc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  </div>
     </div>
   )
 }
